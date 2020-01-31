@@ -1,5 +1,9 @@
 // Library imports
 import React from "react";
+import { ApolloProvider } from '@apollo/react-hooks';
+
+// local imports
+import { client } from './lib/apollo';
 
 // Context imports
 import UserContextProvider from "./contexts/UserContext";
@@ -10,9 +14,11 @@ import Header from "./components/Header";
 const App: React.FC = () => {
   return (
     <div className="App">
-      <UserContextProvider>
-        <Header />
-      </UserContextProvider>
+      <ApolloProvider client={client}>
+        <UserContextProvider>
+          <Header />
+        </UserContextProvider>
+      </ApolloProvider>
     </div>
   );
 };
