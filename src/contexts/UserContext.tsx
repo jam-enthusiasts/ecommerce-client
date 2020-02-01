@@ -1,6 +1,6 @@
 import React, { createContext, useState } from "react";
-import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
+import { GET_USERS } from "../gql/queries/auth";
 
 interface IUser {
   user: String;
@@ -8,23 +8,16 @@ interface IUser {
   data?: any;
 }
 
-const GET_USERS_QUERY = gql`
-  query getUsers {
-    users {
-      email
-      name
-    }
-  }
-`
-type User = {
-  email: string,
-  name: string
-}
+
+// type User = {
+//   email: string,
+//   name: string
+// }
 
 export const UserContext = createContext<IUser>({ user: "", role: "", data: [] });
 
 const UserContextProvider: React.FC = props => {
-  const { loading, error, data } = useQuery(GET_USERS_QUERY);
+  const { loading, error, data } = useQuery(GET_USERS);
   console.log(data);
   const [user, setUser] = useState("");
   const [role, setRole] = useState("");
