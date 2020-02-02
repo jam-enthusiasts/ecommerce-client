@@ -3,7 +3,7 @@ import { gql } from 'apollo-boost';
 
 const GET_USER = gql`
   query ($email: String!) {
-    users (email: $email){
+    user (email: $email){
       email
       name
     }

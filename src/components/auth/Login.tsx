@@ -23,14 +23,16 @@ const Login: React.FC = () => {
 	const [signIn, { loading, data, error }] = useMutation(
 		SIGNIN_MUTATION,
 		{
-			variables: user
+			variables: user,
+			onCompleted(data) {
+				if (data && data.signIn)
+					window.localStorage.setItem('token', data.signIn.token)
+			}
 		}
 	)
 
 	return (
 		<form onSubmit={onSubmit}>
-			<label>Name</label>
-			<input name="name" ref={register} />
 			<label>Email</label>
 			<input name="email" ref={register} />
 			<label>Password</label>
