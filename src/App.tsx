@@ -10,6 +10,8 @@ import UserContextProvider from "./contexts/UserContext";
 
 // Component imports
 import Header from "./components/Header";
+import Register from "./components/auth/Register";
+import Login from "./components/auth/Login";
 
 const App: React.FC = () => {
   return (
@@ -17,6 +19,8 @@ const App: React.FC = () => {
       <ApolloProvider client={client}>
         <UserContextProvider>
           <Header />
+          <Register />
+          <Login />
         </UserContextProvider>
       </ApolloProvider>
     </div>
